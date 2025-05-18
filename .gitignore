@@ -1,0 +1,42 @@
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.lib
+*.pdb
+*.idb
+*.ipch
+*.iobj
+*.iopt
+*.log
+*.tlog
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Others
+*.cache
+*.DS_Store
+*.vscode/
+*.vsidx
+*.ilk
+
+# Temporary files
+*~
+*.swp
+*.tmp
