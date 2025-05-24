@@ -38,6 +38,12 @@ During installation, check the box "Add Python X.Y to PATH."
 Verify by opening a new Command Prompt or PowerShell and typing python --version.
 Phase 2: Compiling and Installing open62541 Library
 We will compile a specific stable version (e.g., v1.3.9, adjust if you need a different one).
+
+
+
+
+
+
 Open Developer Command Prompt for VS 2022:
 Search for "Developer Command Prompt for VS 2022" in the Windows Start Menu and open it. This environment has the MSVC compiler paths correctly set up.
 Choose a Source Directory (Important: NOT in System Folders):
