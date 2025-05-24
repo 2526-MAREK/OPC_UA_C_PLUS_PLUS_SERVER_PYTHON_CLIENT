@@ -2,17 +2,35 @@ Okay, based on our successful journey, here's a step-by-step guide to install op
 Comprehensive Guide: Installing open62541 (e.g., v1.3.x) for Visual Studio 2022 on Windows
 This guide covers compiling open62541 from source using CMake and configuring a Visual Studio C++ project to use the compiled library.
 Phase 1: Prerequisites
+
+
+
 Visual Studio 2022:
 Ensure you have Visual Studio 2022 installed. The Community Edition is free.
 During installation, make sure the "Desktop development with C++" workload is selected. This provides the MSVC compiler, Windows SDK, and C++ build tools.
+
+
+
 CMake:
 Download the latest CMake Windows x64 Installer from https://cmake.org/download/.
+
+
+
+
 Run the installer. Crucially, during installation, select the option to "Add CMake to the system PATH for all users" or "for the current user." This allows you to run cmake from any command prompt.
 Verify by opening a new Command Prompt or PowerShell and typing cmake --version.
+
+
+
+
 Git for Windows:
 Download and install Git from https://git-scm.com/download/win.
 The default installation options are usually fine. Ensure Git is added to your PATH.
 Verify by opening a new Command Prompt or PowerShell and typing git --version.
+
+
+
+
 (Optional, but Recommended for future security) Python:
 open62541 uses Python for some build-time script generation (e.g., for nodesets).
 Download Python from https://www.python.org/downloads/windows/.
@@ -23,15 +41,25 @@ We will compile a specific stable version (e.g., v1.3.9, adjust if you need a di
 Open Developer Command Prompt for VS 2022:
 Search for "Developer Command Prompt for VS 2022" in the Windows Start Menu and open it. This environment has the MSVC compiler paths correctly set up.
 Choose a Source Directory (Important: NOT in System Folders):
+
+
+
+
 Create a directory for your development libraries, e.g., D:\dev_libs or C:\Users\YourUserName\dev_libs. Avoid C:\Windows, C:\Program Files, etc.
 Navigate to this directory in the Developer Command Prompt:
 D:
 cd D:\dev_libs
+
+
+
+
 Use code with caution.
 Bash
 Clone open62541 Repository:
 git clone https://github.com/open62541/open62541.git open62541_source
 cd open62541_source
+
+
 Use code with caution.
 Bash
 Checkout a Stable Version (e.g., v1.3.9):
@@ -40,8 +68,16 @@ git checkout v1.3.9     # Or your desired stable tag (e.g., latest v1.3.x or v1.
 Use code with caution.
 Bash
 Create a Build Directory (Out-of-Source Build):
+
+
+
+
 mkdir build
 cd build
+
+
+
+
 Use code with caution.
 Bash
 Your current path should now be something like D:\dev_libs\open62541_source\build.
@@ -50,6 +86,10 @@ This step generates the Visual Studio project files for building the library.
 We'll specify an installation prefix for a clean installation.
 Command (all on one line):
 cmake -G "Visual Studio 17 2022" -DCMAKE_INSTALL_PREFIX="D:/SDKs/open62541_v1.3.9_install" -DUA_NAMESPACE_ZERO=FULL -DUA_BUILD_EXAMPLES=OFF -DUA_ENABLE_AMALGAMATION=OFF ..
+
+
+
+
 Use code with caution.
 Bash
 -G "Visual Studio 17 2022": Specifies the generator for your VS version.
@@ -59,8 +99,18 @@ Bash
 -DUA_ENABLE_AMALGAMATION=OFF: Standard build method.
 ..: Tells CMake the source directory is one level up.
 Wait for CMake to finish configuration. Ignore minor warnings unless they indicate a critical failure.
+
+
+
+
 Build the Library:
 cmake --build . --config Release
+
+
+
+
+
+
 Use code with caution.
 Bash
 --config Release: Builds the Release (optimized) version of the library. You can also use Debug if needed.
@@ -71,12 +121,22 @@ Use code with caution.
 Bash
 If your CMAKE_INSTALL_PREFIX was in a protected location (like C:\Program Files), you might need to run the Developer Command Prompt as Administrator for this step. With D:\SDKs\... it should be fine.
 Verify Installation:
+
+
+
+
 Navigate to your install prefix (e.g., D:\SDKs\open62541_v1.3.9_install).
 You should see folders like:
 include (containing an open62541 subfolder with .h files)
 lib (containing open62541.lib)
 share (containing CMake support files)
 (Possibly a bin folder if shared libraries were built, though default is static).
+
+
+
+
+
+
 Phase 3: Configuring Your Visual Studio C++ Project to Use open62541
 Create or Open Your Visual Studio C++ Project:
 For a new project, you might choose "Empty Project" or "Console App" under C++.
@@ -87,11 +147,19 @@ Set Configuration and Platform:
 At the top of the Property Pages window:
 Configuration: "All Configurations" (Wszystkie konfiguracje)
 Platform: "All Platforms" (Wszystkie platformy) or your specific target (e.g., "x64").
+
+
+
+
+
+
 Add Include Directory:
 Navigate: Configuration Properties -> C/C++ -> General (Właściwości konfiguracji -> C/C++ -> Ogólne).
 Edit "Additional Include Directories" (Dodatkowe katalogi plików nagłówkowych).
 Add the path to your open62541 installation's include folder:
 D:\SDKs\open62541_v1.3.9_install\include
+
+
 Click "OK".
 Add Library Directory:
 Navigate: Configuration Properties -> Linker -> General (Właściwości konfiguracji -> Konsolidator -> Ogólne).
